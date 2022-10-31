@@ -2,6 +2,7 @@ package com.mygdx.screens;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -9,6 +10,7 @@ import com.mygdx.game1.MyGdxGame;
 
 import Draw.Draw;
 import Entities.ClickableGrid;
+import Entities.TitleBorder;
 
 
 public class GameScreen implements Screen {
@@ -22,6 +24,7 @@ public class GameScreen implements Screen {
 	
 	//Scene2d
 	Stage stage;
+	
 
 
 	public GameScreen(final MyGdxGame game) {
@@ -56,6 +59,7 @@ public class GameScreen implements Screen {
 	
 		//The grid is drawn to the screen while the clicker polls for events
 		Draw.drawClickableGrid(cg1, game.batch);
+		game.batch.draw(TitleBorder.titleBorder, TitleBorder.posX - 300, TitleBorder.posY);
 		cg1.Clicker();
 
 		game.batch.end();
