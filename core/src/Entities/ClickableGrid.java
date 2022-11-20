@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+
 import Textures.TileTextures;
 
 
@@ -15,6 +17,11 @@ public class ClickableGrid {
 	public int row, col;
 	public SpriteBatch batch;
 	public float[][][] clickingGrid;
+	
+	//Flag Button
+	public FlagButton fg = new FlagButton(FlagButton.posX, FlagButton.posY, batch, FlagButton.unpressed);
+	
+	
 	
 
 	public ClickableGrid(int rows, int columns, SpriteBatch batch){
@@ -42,10 +49,11 @@ public class ClickableGrid {
 			
 		}
 		
+		
 		//Mines are set and each tile counts its neighboring mines
 		setMines(8);
 		mineTouchingCounter();
-		
+	
 		
 		//A Positional grid to handle polling for user click events
 		//This is a 3d array containing the bounds for each tile.

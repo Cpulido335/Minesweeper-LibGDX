@@ -10,6 +10,7 @@ import com.mygdx.game1.MyGdxGame;
 
 import Draw.Draw;
 import Entities.ClickableGrid;
+import Entities.FlagButton;
 import Entities.TitleBorder;
 
 
@@ -56,10 +57,12 @@ public class GameScreen implements Screen {
 		fitViewport.apply();
 		game.batch.setProjectionMatrix(fitViewport.getCamera().combined);
 		game.batch.begin();
-	
+		
+		game.batch.draw(TitleBorder.titleBorder, TitleBorder.posX - 300, TitleBorder.posY);
+		
 		//The grid is drawn to the screen while the clicker polls for events
 		Draw.drawClickableGrid(cg1, game.batch);
-		game.batch.draw(TitleBorder.titleBorder, TitleBorder.posX - 300, TitleBorder.posY);
+		
 		cg1.Clicker();
 
 		game.batch.end();

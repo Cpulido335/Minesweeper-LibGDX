@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import Entities.ClickableGrid;
+import Entities.FlagButton;
 
 public class Draw {
 	
@@ -29,6 +30,7 @@ public class Draw {
 	// A method to draw the grid, It iterates through the grid object from the ClickableGrid class, drawing each tile to the Sprite Batch.
 	public static void drawClickableGrid(ClickableGrid cg, SpriteBatch batch) {
 		
+		
 		for (int i = 0; i < cg.row; i++)
 		{
 			for (int j = 0; j < cg.col; j++)
@@ -42,6 +44,9 @@ public class Draw {
 			}
 			
 		}
+		batch.draw(cg.fg.sprite, cg.fg.sprite.getX(), cg.fg.sprite.getY(), cg.fg.sprite.getOriginX(), cg.fg.sprite.getOriginY(),
+				cg.fg.sprite.getWidth(), cg.fg.sprite.getHeight(), 0.8f, 0.8f, 
+				cg.fg.sprite.getRotation());
 		
 	}
 
