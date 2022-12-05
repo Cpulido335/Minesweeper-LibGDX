@@ -48,7 +48,7 @@ public class Draw {
 				cg.fg.sprite.getWidth(), cg.fg.sprite.getHeight(), 0.8f, 0.8f, 
 				cg.fg.sprite.getRotation());
 		
-	}
+		}
 
 
 }

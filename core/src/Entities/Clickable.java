@@ -25,6 +25,7 @@ public class Clickable{
 	public int numberOfMinesTouching = 0;
 	public boolean isMine;
 	public boolean isRevealed;
+	public boolean isFlagged = false;
 
 
 	public Clickable(int PositionX, int PositionY, SpriteBatch batch, Texture texture)

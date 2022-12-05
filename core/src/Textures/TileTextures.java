@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 public class TileTextures {
 	
 	//Stores a static array of file names, was planning to use enums, but this was simpler
+	public static Texture flagged = new Texture("tileF.png");
 	
 	public static String[] TileTexture = {
 			"empty_tile_b.png", //0

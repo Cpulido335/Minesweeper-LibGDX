@@ -21,7 +21,7 @@ public class GameScreen implements Screen {
 	final MyGdxGame game;
 	FitViewport fitViewport;
 	OrthographicCamera camera;
-	ClickableGrid cg1;
+	public static ClickableGrid cg1;
 	
 	//Scene2d
 	Stage stage;

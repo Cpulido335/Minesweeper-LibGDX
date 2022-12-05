@@ -5,7 +5,7 @@ import java.util.Random;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-
+import Textures.ButtonTextures;
 import Textures.TileTextures;
 
 
@@ -18,10 +18,11 @@ public class ClickableGrid {
 	public SpriteBatch batch;
 	public float[][][] clickingGrid;
 	
+	
+	
 	//Flag Button
 	public FlagButton fg = new FlagButton(FlagButton.posX, FlagButton.posY, batch, FlagButton.unpressed);
-	
-	
+	public boolean flagToggled = false;
 	
 
 	public ClickableGrid(int rows, int columns, SpriteBatch batch){
@@ -68,7 +69,7 @@ public class ClickableGrid {
 			}
 		}
 		
-		}
+	}
 	
 	
 	//Takes in the number of mines, sets them randomly
@@ -101,7 +102,7 @@ public class ClickableGrid {
 				
 		}
 		
-		}
+	}
 	
 	
 	public void mineTouchingCounter() {
@@ -137,6 +138,8 @@ public class ClickableGrid {
 	}
 	
 	
+	
+	
 	//A try catch block used in mineTouchingCounter() to make sure a tile exists 
 	public boolean tileExists(int i, int j) {
 		
@@ -154,6 +157,21 @@ public class ClickableGrid {
 		int mouseX = Gdx.input.getX();
 		int mouseY = Gdx.input.getY();
 		
+		//Is flag button touched
+		if(mouseX < this.fg.boundMaxX && mouseX > this.fg.boundMinX
+		&& mouseY > this.fg.boundMaxY && mouseY < this.fg.boundMinY) 
+		{	
+			if (Gdx.input.isTouched()) 
+			{
+				this.flagToggle();
+				wait(250);
+				
+			}
+			
+		}
+		
+
+		
 		for (int i = 0; i < col; i++) 
 		{
 			for (int j = 0; j < row; j++) 
@@ -161,9 +179,22 @@ public class ClickableGrid {
 				if(mouseX < this.clickingGrid[i][j][0] && mouseX > this.clickingGrid[i][j][1]
 				&& mouseY > this.clickingGrid[i][j][2] && mouseY < this.clickingGrid[i][j][3])
 				{
-					if (Gdx.input.isTouched()){
-					this.grid[i][j].setRevealed(true);
-					this.grid[i][j].Update();
+					if (Gdx.input.isTouched())
+					{
+						if (this.flagToggled && !this.grid[i][j].isRevealed && !this.grid[i][j].isFlagged) 
+						{
+							this.grid[i][j].isFlagged = true;
+							this.grid[i][j].sprite.setTexture(TileTextures.flagged);
+						} else if (this.flagToggled && this.grid[i][j].isFlagged)
+						{
+							this.grid[i][j].isFlagged = false;
+							this.grid[i][j].sprite.setTexture(TileTextures.returnTexture(9));
+						} else
+						{
+							this.grid[i][j].setRevealed(true);
+							this.grid[i][j].Update();
+						}
+						wait(250);
 					}
 				}
 			}
@@ -172,6 +203,30 @@ public class ClickableGrid {
 	}
 	
 	
+	public void flagToggle(){
+		
+		if(this.flagToggled) 
+		{
+			this.flagToggled = false;
+			this.fg.sprite.setTexture(ButtonTextures.flagbuttonunpressed);
+		} else 
+		{
+			this.flagToggled = true;
+			this.fg.sprite.setTexture(ButtonTextures.flagbuttonpressed);
+		}
+		
+	}
+	
+	
+	public void wait(int TimeMs) {
+		try {
+			Thread.sleep(TimeMs);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+
 	
 	
 	
